@@ -3,8 +3,9 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+
 class Dinner(db.Model):
-    __tablename__ = "Dinners"
+    __tablename__ = "dinners"
     DinnerID = db.Column(db.Integer, primary_key=True)
     Title = db.Column(db.String, nullable=False)
     EventDate = db.Column(db.DateTime, nullable=False)
@@ -16,10 +17,10 @@ class Dinner(db.Model):
     Latitude = db.Column(db.Float, nullable=False)
     Longitude = db.Column(db.Float, nullable=False)
 
+
 class RSVP(db.Model):
-    __tablename__ = "RSVPs"
+    __tablename__ = "rsvps"
     RsvpID = db.Column(db.Integer, primary_key=True)
-    DinnerID = db.Column(db.Integer, db.ForeignKey("Dinners.DinnerID"), nullable=False)
+    DinnerID = db.Column(db.Integer, db.ForeignKey(
+        "dinners.DinnerID"), nullable=False)
     AttendeeName = db.Column(db.String, nullable=False)
-
-
